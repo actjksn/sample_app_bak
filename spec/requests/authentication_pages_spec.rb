@@ -1,4 +1,4 @@
-require 'spec_helper'
+  require 'spec_helper'
 
 describe "AuthenticationPages" do
   subject { page }
@@ -33,16 +33,7 @@ describe "AuthenticationPages" do
       it { should have_link('Profile',        href: user_path(user)) }
       it { should have_link('Sign out',       href: signout_path)    }
       it { should_not have_link('Sign in',    href: signin_path)     }
-
-      describe "after saving the user" do
-        before { click_button submit }
-        let(:user) { User.find_by(email: 'user@example.com') }
-
-        it { should have_link('Sign out') }
-        it { should have_title(user.name) }
-        it { should have_selector('div.alert.alert-success'), text: 'Welecome' }
-      end      
-
+      
       describe "followed by signout" do
         before { click_link "Sign out" }
         it { should have_link('Sign in') }
